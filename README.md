@@ -1,12 +1,12 @@
-# Melody
+# MOLLA
 
-<img alt="Melody Logo" src="">
+<img alt="Molla Logo" src="">
 
-## About Melody
+## About MOLLA
 
-Melody is an e-commerce website
+Molla is an e-commerce website
 
-## Melody Application Development Procedures
+## Molla Application Development Procedures
 
 1. CD into the application root directory with your command prompt/terminal/git bash.
 

@@ -27,10 +27,10 @@
             <td>${{ number_format($item->price, 2) }}</td>
             <td>
                 <a href="javascript:void(0);" data-id="{{ $item->rowId }}"
-                    class="move-to-cart btn btn-primary btn-sm"
-                    {{ $item->model->stock > 0 ? '' : 'disable' }}
+                    class="move-to-cart btn btn-primary btn-sm
+                    {{ $item->model->stock > 0 ? '' : 'deactivate' }}"
                     id="move-to-{{ $item->rowId }}">
-                    Add to Cart
+                    {{ $item->model->stock > 0 ? 'Add to Cart' : 'Out of Stock' }}
                 </a>
             </td>
         </tr>
