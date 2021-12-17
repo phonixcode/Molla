@@ -72,8 +72,11 @@
                                 @forelse (Cart::instance('shopping')->content() as $item)
                                     <li>
                                         <div class="cart-item-desc">
+                                            @php
+                                                $photo=explode(',',$item->model->photo);
+                                            @endphp
                                             <a href="#" class="image">
-                                                <img src="{{ $item->model->photo }}" class="cart-thumb" alt=""
+                                                <img src="{{ $photo[0] }}" class="cart-thumb" alt=""
                                                     style="width: 30px;">
                                             </a>
                                             <div>

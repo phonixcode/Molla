@@ -13,7 +13,7 @@ class IndexController extends Controller
     {
         $banners = Banner::where(['status' => 'active', 'condition' => 'banner'])->orderBy('id', 'DESC')->limit('5')->get();
         $categories = Category::where(['status' => 'active', 'is_parent' => 1])->orderBy('id', 'DESC')->limit('3')->get();
-        $new_products = Product::where(['status' => 'active', 'condition' => 'new'])->orderBy('id', 'DESC')->limit('10')->get();
+        $new_products = Product::where(['status' => 'active', 'condition' => 'new'])->orderBy('id', 'DESC')->limit('8')->get();
         return view('frontend.pages.home.index', compact('banners', 'categories', 'new_products'));
     }
 
