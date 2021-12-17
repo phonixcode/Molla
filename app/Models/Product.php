@@ -24,6 +24,7 @@ class Product extends Model
         'price',
         'offer_price',
         'discount',
+        'is_featured',
         'condition',
         'status',
         'photo',

@@ -37,6 +37,7 @@ class CreateProductsTable extends Migration
             $table->float('discount')->default(0);
             $table->string('size');
             $table->enum('condition', ['new', 'popular', 'winter'])->default('new');
+            $table->boolean('is_featured')->default(0)->nullable();
             $table->unsignedBigInteger('vendor_id')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
 
