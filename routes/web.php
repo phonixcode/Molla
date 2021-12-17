@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CurrencyController;
+use App\Http\Controllers\Test\TestController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\CartController;
@@ -79,3 +80,6 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth:web', 'preventBackHisto
     Route::get('logout', [LoginController::class, 'userLogout'])->name('user.auth.logout');
 });
 
+
+// Route::get('welcome', [TestController::class, 'test'])->name('test.welcome');
+// Route::post('welcome', [TestController::class, 'store'])->name('test.store');

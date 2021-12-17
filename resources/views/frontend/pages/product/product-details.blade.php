@@ -1,82 +1,6 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-    <!-- Quick View Modal Area -->
-    <div class="modal fade" id="quickview" tabindex="-1" role="dialog" aria-labelledby="quickview" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <div class="modal-body">
-                    <div class="quickview_body">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12 col-lg-5">
-                                    <div class="quickview_pro_img">
-                                        <img class="first_img" src="img/product-img/new-1-back.png" alt="">
-                                        <img class="hover_img" src="img/product-img/new-1.png" alt="">
-                                        <!-- Product Badge -->
-                                        <div class="product_badge">
-                                            <span class="badge-new">New</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-7">
-                                    <div class="quickview_pro_des">
-                                        <h4 class="title">Boutique Silk Dress</h4>
-                                        <div class="top_seller_product_rating mb-15">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                        </div>
-                                        <h5 class="price">$120.99 <span>$130</span></h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia expedita
-                                            quibusdam aspernatur, sapiente consectetur accusantium perspiciatis praesentium
-                                            eligendi, in fugiat?</p>
-                                        <a href="#">View Full Product Details</a>
-                                    </div>
-                                    <!-- Add to Cart Form -->
-                                    <form class="cart" method="post">
-                                        <div class="quantity">
-                                            <input type="number" class="qty-text" id="qty" step="1" min="1" max="12"
-                                                name="quantity" value="1">
-                                        </div>
-                                        <button type="submit" name="addtocart" value="5" class="cart-submit">Add to
-                                            cart</button>
-                                        <!-- Wishlist -->
-                                        <div class="modal_pro_wishlist">
-                                            <a href="wishlist.html"><i class="icofont-heart"></i></a>
-                                        </div>
-                                        <!-- Compare -->
-                                        <div class="modal_pro_compare">
-                                            <a href="compare.html"><i class="icofont-exchange"></i></a>
-                                        </div>
-                                    </form>
-                                    <!-- Share -->
-                                    <div class="share_wf mt-30">
-                                        <p>Share with friends</p>
-                                        <div class="_icon">
-                                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                            <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                                            <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                            <a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Quick View Modal Area -->
-
     <!-- Breadcumb Area -->
     <div class="breadcumb_area">
         <div class="container h-100">
@@ -212,13 +136,15 @@
                         </div>
 
                         <!-- Add to Cart Form -->
-                        <form action="#" class="cart clearfix my-5 d-flex flex-wrap align-items-center" method="post">
+                        <form class="cart clearfix my-5 d-flex flex-wrap align-items-center">
                             <div class="quantity">
-                                <input type="number" class="qty-text form-control" id="qty2" step="1" min="1" max="12"
+                                <input data-id="{{ $product->id }}" type="number" class="qty-text form-control" id="qty2" step="1" min="1" max="12"
                                     name="quantity" value="1">
                             </div>
-                            <button type="submit" name="addtocart" value="5"
-                                class="btn btn-primary mt-1 mt-md-0 ml-1 ml-md-3">Add to cart</button>
+                            <button type="submit" name="addtocart" value="5" data-product_id={{ $product->id }}
+                                data-quantity="1" data-price={{ $product->offer_price }} id="add_to_cart_button_details_{{ $product->id }}"
+                                class="add_to_cart_button_details btn btn-primary mt-1 mt-md-0 ml-1 ml-md-3">Add to cart
+                            </button>
                         </form>
 
                         <!-- Others Info -->
@@ -410,14 +336,14 @@
                         <!-- Single Product -->
                         @forelse ($product->related_products as $r_product)
                             @if ($r_product->id != $product->id)
-                                <div class="single-product-area">
+                                <div class="single_popular_item">
                                     <div class="product_image">
                                         <!-- Product Image -->
                                         @php
                                             $photo = explode(',', $r_product->photo);
                                         @endphp
-                                        <img class="normal_img" src="{{ $photo[0] }}" alt="">
-                                        {{-- <img class="hover_img" src="img/product-img/new-1.png" alt=""> --}}
+                                        <img class="first_img" src="{{ $photo[0] }}" alt="{{ $r_product->title }}">
+                                        {{-- <img class="hover_img" src="img/product-img/popular-1-back.jpg" alt=""> --}}
 
                                         <!-- Product Badge -->
                                         <div class="product_badge">
@@ -425,10 +351,6 @@
                                         </div>
 
                                         <!-- Wishlist -->
-                                        {{-- <div class="product_wishlist">
-                                            <a href="wishlist.html"><i class="icofont-heart"></i></a>
-                                        </div> --}}
-
                                         <div class="product_wishlist">
                                             <a href="javascript:void(0);" class="add_to_wishlist" data-quantity="1"
                                                 data-id="{{ $r_product->id }}"
@@ -437,37 +359,20 @@
                                             </a>
                                         </div>
 
-                                        <!-- Compare -->
-                                        <div class="product_compare">
-                                            <a href="compare.html"><i class="icofont-exchange"></i></a>
-                                        </div>
-                                    </div>
-
-                                    <!-- Product Description -->
-                                    <div class="product_description">
                                         <!-- Add to cart -->
                                         <div class="product_add_to_cart">
-                                            <a href="#" data-quantity="1" data-product-id="{{ $r_product->id }}"
+                                            <a href="javascript:void(0);" data-quantity="1" data-product-id="{{ $r_product->id }}"
                                                 class="add_to_cart" id="add_to_cart{{ $r_product->id }}">
                                                 <i class="icofont-shopping-cart"></i> Add to Cart
                                             </a>
                                         </div>
-
-                                        <!-- Quick View -->
-                                        <div class="product_quick_view">
-                                            <a href="#" data-toggle="modal" data-target="#quickview"><i
-                                                    class="icofont-eye-alt"></i> Quick View</a>
-                                        </div>
-
-                                        <p class="brand_name">
-                                            {{ \App\Models\Brand::where('id', $r_product->brand_id)->value('title') }}
-                                        </p>
-                                        <a href="{{ route('product.details', $r_product->slug) }}">
-                                            {{ ucfirst($r_product->title) }}
-                                        </a>
-                                        <h6 class="product-price">
+                                    </div>
+                                    <!-- Product Description -->
+                                    <div class="product_description">
+                                        <h5><a href="{{ route('product.details', $r_product->slug) }}"> {{ ucfirst($r_product->title) }}</a></h5>
+                                        <h6>
                                             ${{ number_format($r_product->offer_price,2) }}
-                                            <small><del class="text-danger">${{ number_format($r_product->price,2) }}</del></small>
+                                            <span>${{ number_format($r_product->price,2) }}</span>
                                         </h6>
                                     </div>
                                 </div>
@@ -497,4 +402,89 @@
         }
 
     </style>
+@endsection
+@section('script')
+<script>
+    $('.qty-text').change('key up', function() {
+        var id = $(this).data('id');
+        var spinner = $(this),
+            input = spinner.closest("div.quantity").find('input[type="number"]');
+        var newValue = parseFloat(input.val());
+        $('#add_to_cart_button_details_'+id).attr('data-quantity', newValue);
+    });
+
+    $('.add_to_cart_button_details'),on('click', function(){
+        var product_qty = $(this).data('quantity');
+        var product_id = $(this).data('product_id');
+        var product_size = $(this).data('size');
+        var product_price = $(this).data('price');
+        var token = "{{ csrf_token() }}";
+        var path = "{{ route('cart.update') }}";
+
+        $.ajax({
+            url: path,
+            type: 'POST',
+            data: {
+                _token: token,
+                product_id: product_id,
+                product_qty: product_qty,
+                product_size: product_price,
+                product_qty: product_qty,
+            },
+            beforeSend: function() {
+                $('#add_to_cart_button_details_'+ product_id).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+            },
+            complete: function() {
+                $('#add_to_cart_button_details_'+ product_id).html('Add To Cart');
+            },
+            success: function(data) {
+                $('body #header-ajax').html(data['header']);
+                $('body #cart-counter').html(data['cart_count']);
+
+                if (data['status']) {
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": 300,
+                        "hideDuration": 1000,
+                        "timeOut": 5000,
+                        "extendedTimeOut": 1000,
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                    toastr.success(data['message']);
+                } else {
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": 300,
+                        "hideDuration": 1000,
+                        "timeOut": 5000,
+                        "extendedTimeOut": 1000,
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                    toastr.warning(data['message']);
+                }
+            },
+            error: function(err) {
+                toastr.error("Something went wrong!, please try again later");
+            }
+        });
+    });
+</script>
 @endsection
