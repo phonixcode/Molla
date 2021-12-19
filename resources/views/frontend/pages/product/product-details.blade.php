@@ -149,8 +149,12 @@
 
                         <!-- Others Info -->
                         <div class="others_info_area mb-3 d-flex flex-wrap">
-                            <a class="add_to_wishlist" href="wishlist.html"><i class="fa fa-heart"
-                                    aria-hidden="true"></i> WISHLIST</a>
+                            <a class="add_item_to_wishlist" href="javascript:void(0);"
+                                data-quantity="1" data-id="{{ $product->id }}"
+                                id="add_to_wishlist_{{ $product->id }}">
+                                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                WISHLIST
+                            </a>
                             <a class="add_to_compare" href="compare.html"><i class="fa fa-th" aria-hidden="true"></i>
                                 COMPARE</a>
                             <a class="share_with_friend" href="#"><i class="fa fa-share" aria-hidden="true"></i> SHARE
@@ -387,6 +391,7 @@
     </section>
     <!-- Related Products Area -->
 @endsection
+
 @section('style')
     <style>
         .nice-select {
@@ -403,47 +408,39 @@
 
     </style>
 @endsection
+
 @section('script')
 <script>
-    $('.qty-text').change('key up', function() {
-        var id = $(this).data('id');
-        var spinner = $(this),
-            input = spinner.closest("div.quantity").find('input[type="number"]');
-        var newValue = parseFloat(input.val());
-        $('#add_to_cart_button_details_'+id).attr('data-quantity', newValue);
-    });
-
-    $('.add_to_cart_button_details'),on('click', function(){
+    $(document).on('click', '.add_item_to_wishlist', function(e) {
+        e.preventDefault();
+        var product_id = $(this).data('id');
         var product_qty = $(this).data('quantity');
-        var product_id = $(this).data('product_id');
-        var product_size = $(this).data('size');
-        var product_price = $(this).data('price');
+
         var token = "{{ csrf_token() }}";
-        var path = "{{ route('cart.update') }}";
+        var path = "{{ route('wishlist.store') }}";
 
         $.ajax({
             url: path,
             type: 'POST',
+            dataType: 'json',
             data: {
-                _token: token,
                 product_id: product_id,
                 product_qty: product_qty,
-                product_size: product_price,
-                product_qty: product_qty,
+                _token: token,
             },
             beforeSend: function() {
-                $('#add_to_cart_button_details_'+ product_id).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+                $('#add_to_wishlist_' + product_id).html('<i class="fa fa-spinner fa-spin"></i>');
             },
             complete: function() {
-                $('#add_to_cart_button_details_'+ product_id).html('Add To Cart');
+                $('#add_to_wishlist_' + product_id).html(
+                    '<i class="fa fa-heart"></i> WISHLIST');
             },
             success: function(data) {
-                $('body #header-ajax').html(data['header']);
-                $('body #cart-counter').html(data['cart_count']);
-
                 if (data['status']) {
+                    $('body #header-ajax').html(data['header']);
+                    $('body #wishlist-counter').html(data['wishlist_count']);
                     toastr.options = {
-                        "closeButton": true,
+                        "closeButton": false,
                         "debug": false,
                         "newestOnTop": false,
                         "progressBar": true,
@@ -460,9 +457,9 @@
                         "hideMethod": "fadeOut"
                     }
                     toastr.success(data['message']);
-                } else {
+                } else if (data['present']) {
                     toastr.options = {
-                        "closeButton": true,
+                        "closeButton": false,
                         "debug": false,
                         "newestOnTop": false,
                         "progressBar": true,
@@ -484,7 +481,7 @@
             error: function(err) {
                 toastr.error("Something went wrong!, please try again later");
             }
-        });
+        })
     });
 </script>
 @endsection
