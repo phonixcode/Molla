@@ -32,12 +32,10 @@
                         <h6>Information</h6>
                     </div>
                     <ul class="footer_widget_menu">
-                        <li><a href="#"><i class="icofont-rounded-right"></i> Your Account</a></li>
-                        <li><a href="#"><i class="icofont-rounded-right"></i> Free Shipping Policy</a></li>
-                        <li><a href="#"><i class="icofont-rounded-right"></i> Your Cart</a></li>
-                        <li><a href="#"><i class="icofont-rounded-right"></i> Return Policy</a></li>
-                        <li><a href="#"><i class="icofont-rounded-right"></i> Free Coupon</a></li>
-                        <li><a href="#"><i class="icofont-rounded-right"></i> Delivary Info</a></li>
+                        <li><a href="{{ route('about') }}"><i class="icofont-rounded-right"></i> About us</a></li>
+                        <li><a href="javascript:void(0);"><i class="icofont-rounded-right"></i> Terms &amp; Conditions</a></li>
+                        <li><a href="javascript:void(0);"><i class="icofont-rounded-right"></i> Help</a></li>
+                        <li><a href="javascript:void(0);"><i class="icofont-rounded-right"></i> FAQ</a></li>
                     </ul>
                 </div>
             </div>
@@ -49,12 +47,13 @@
                         <h6>Account</h6>
                     </div>
                     <ul class="footer_widget_menu">
-                        <li><a href="#"><i class="icofont-rounded-right"></i> Product Support</a></li>
-                        <li><a href="#"><i class="icofont-rounded-right"></i> Terms &amp; Conditions</a></li>
-                        <li><a href="#"><i class="icofont-rounded-right"></i> Help</a></li>
-                        <li><a href="#"><i class="icofont-rounded-right"></i> Payment Method</a></li>
-                        <li><a href="#"><i class="icofont-rounded-right"></i> Affiliate Program</a></li>
-                        <li><a href="#"><i class="icofont-rounded-right"></i> Privacy Policy</a></li>
+                        @auth
+                        <li><a href="{{ route('user.dashboard') }}"><i class="icofont-rounded-right"></i> My Account</a></li>
+                        <li><a href="{{ route('user.order') }}"><i class="icofont-rounded-right"></i> Order List</a></li>
+                        @else
+                        <li><a href="{{ route('user.auth.login') }}"><i class="icofont-rounded-right"></i> Login</a></li>
+                        <li><a href="{{ route('user.auth.register') }}"><i class="icofont-rounded-right"></i> Register</a></li>
+                        @endauth
                     </ul>
                 </div>
             </div>
@@ -66,12 +65,12 @@
                         <h6>Support</h6>
                     </div>
                     <ul class="footer_widget_menu">
-                        <li><a href="#"><i class="icofont-rounded-right"></i> Payment Method</a></li>
-                        <li><a href="#"><i class="icofont-rounded-right"></i> Help</a></li>
-                        <li><a href="#"><i class="icofont-rounded-right"></i> Product Support</a></li>
-                        <li><a href="#"><i class="icofont-rounded-right"></i> Terms &amp; Conditions</a></li>
-                        <li><a href="#"><i class="icofont-rounded-right"></i> Privacy Policy</a></li>
-                        <li><a href="#"><i class="icofont-rounded-right"></i> Affiliate Program</a></li>
+                        <li><a href="javascript:void(0);"><i class="icofont-rounded-right"></i> Payment Method</a></li>
+                        <li><a href="javascript:void(0);"><i class="icofont-rounded-right"></i> Product Support</a></li>
+                        <li><a href="javascript:void(0);"><i class="icofont-rounded-right"></i> Privacy Policy</a></li>
+                        <li><a href="javascript:void(0);"><i class="icofont-rounded-right"></i> Affiliate Program</a></li>
+                        <li><a href="javascript:void(0);"><i class="icofont-rounded-right"></i> Return Policy</a></li>
+                        <li><a href="javascript:void(0);"><i class="icofont-rounded-right"></i> Free Coupon</a></li>
                     </ul>
                 </div>
             </div>
