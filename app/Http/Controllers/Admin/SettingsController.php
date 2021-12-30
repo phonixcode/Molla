@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Settings;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class SettingsController extends Controller
 {
@@ -24,8 +25,8 @@ class SettingsController extends Controller
         $settings = $this->update($request);
 
         return $settings
-        ? back()->with('success', 'Setting successfully updated')
-        : back()->with('error', 'Something went wrong!');
+            ? back()->with('success', 'Setting successfully updated')
+            : back()->with('error', 'Something went wrong!');
     }
 
     /**
@@ -51,5 +52,16 @@ class SettingsController extends Controller
             'pinterest_url' => $request->pinterest_url
         ]);
         return $settings;
+    }
+
+    public function optimize()
+    {
+        Artisan::call('cache:clear');
+        Artisan::call('config:cache');
+        Artisan::call('route:cache');
+        Artisan::call('view:clear');
+        Artisan::call('optimize:clear');
+
+        return back()->with('success', 'Cache cleared successfully');
     }
 }

@@ -119,6 +119,13 @@
                     <span class="nav-title">Settings</span>
                 </a>
             </li>
+            <li class="nav-static-title">Others</li>
+            <li>
+                <a href="{{ route('settings.optimize') }}" aria-expanded="false">
+                    <i class="nav-icon ti ti-brush"></i>
+                    <span class="nav-title">Clear Cache</span>
+                </a>
+            </li>
         </ul>
     </div>
     <!-- end sidebar-nav -->

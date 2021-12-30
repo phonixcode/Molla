@@ -35,7 +35,7 @@
                         <li><a href="{{ route('about') }}"><i class="icofont-rounded-right"></i> About us</a></li>
                         <li><a href="javascript:void(0);"><i class="icofont-rounded-right"></i> Terms &amp; Conditions</a></li>
                         <li><a href="javascript:void(0);"><i class="icofont-rounded-right"></i> Help</a></li>
-                        <li><a href="javascript:void(0);"><i class="icofont-rounded-right"></i> FAQ</a></li>
+                        <li><a href="{{ route('faq') }}"><i class="icofont-rounded-right"></i> FAQ</a></li>
                     </ul>
                 </div>
             </div>

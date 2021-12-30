@@ -31,6 +31,7 @@ require __DIR__ . './admin.php';
 Route::get('/', [IndexController::class, 'home'])->name('home');
 Route::get('about-us', [IndexController::class, 'about'])->name('about');
 Route::get('contact-us', [IndexController::class, 'contact'])->name('contact');
+Route::get('faq', [IndexController::class, 'faq'])->name('faq');
 
 Route::get('cart', [CartController::class, 'cart'])->name('cart');
 // Route::post('/add-to-cart',[CartController::class , 'singleAddToCart'])->name('single.add.to.cart');

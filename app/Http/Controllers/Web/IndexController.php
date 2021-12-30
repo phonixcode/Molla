@@ -29,4 +29,9 @@ class IndexController extends Controller
     {
         return view('frontend.pages.contact.contact');
     }
+
+    public function faq()
+    {
+        return view('frontend.pages.faq.faq');
+    }
 }
