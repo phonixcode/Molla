@@ -17,7 +17,8 @@ class BannerFactory extends Factory
     {
         $title = $this->faker->unique()->words($nb=1,$asText=true);
         $slug = Str::slug($title);
-        $imagePath = URL::full().':1000/frontend/img/bg-img/';
+        //$imagePath = URL::full().':1000/frontend/img/bg-img/';
+        $imagePath = URL::full().'/frontend/img/bg-img/';
         return [
             'title' => $title,
             'slug' => $slug,
