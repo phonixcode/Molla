@@ -106,7 +106,7 @@
             </li>
             <li class="nav-static-title">Users</li>
             <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
-                <i class="nav-icon fa fa-group"></i><span class="nav-title">User Management</span></a>
+                    <i class="nav-icon fa fa-group"></i><span class="nav-title">User Management</span></a>
                 <ul aria-expanded="false">
                     <li> <a href='{{ route('user.index') }}'>All Users</a> </li>
                     <li> <a href='{{ route('user.create') }}'>Add User</a> </li>
