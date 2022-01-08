@@ -9,6 +9,7 @@ use App\Models\ProductAttribute;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use Helper;
 
 class ProductController extends Controller
 {
@@ -23,14 +24,9 @@ class ProductController extends Controller
         return view('admin.product.index', compact('products'));
     }
 
-    public function productStatus(Request $request)
+    public function productStatus(Request $request, Product $product)
     {
-        if ($request->mode == 'true') {
-            DB::table('products')->where('id', $request->id)->update(['status' => 'active']);
-        } else {
-            DB::table('products')->where('id', $request->id)->update(['status' => 'inactive']);
-        }
-
+        Helper::toggleStatus($request, $product);
         return response()->json(['msg' => 'Status updated successfully.', 'status' => true]);
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -18,6 +19,12 @@ class BrandController extends Controller
     {
         $brands = Brand::orderBy('id', 'DESC')->get();
         return view('admin.brand.index', compact('brands'));
+    }
+
+    public function brandStatus(Request $request, Brand $brand)
+    {
+        Helper::toggleStatus($request, $brand);
+        return response()->json(['msg' => 'Status updated successfully.', 'status' => true]);
     }
 
     /**

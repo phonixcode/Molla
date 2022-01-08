@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -18,6 +19,12 @@ class CategoryController extends Controller
     {
         $categories = Category::orderBy('id', 'DESC')->get();
         return view('admin.category.index', compact('categories'));
+    }
+
+    public function categoryStatus(Request $request, Category $category)
+    {
+        Helper::toggleStatus($request, $category);
+        return response()->json(['msg' => 'Status updated successfully.', 'status' => true]);
     }
 
     /**

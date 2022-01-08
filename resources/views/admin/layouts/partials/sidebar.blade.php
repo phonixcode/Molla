@@ -9,7 +9,15 @@
                     <span class="nav-title">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-static-title">Banner</li>
+            <li class="nav-static-title">User</li>
+            <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+                    <i class="nav-icon fa fa-group"></i><span class="nav-title">Customer Management</span></a>
+                <ul aria-expanded="false">
+                    <li> <a href='{{ route('user.index') }}'>All Customers</a> </li>
+                    <li> <a href='{{ route('user.create') }}'>Add Customer</a> </li>
+                </ul>
+            </li>
+            <li class="nav-static-title">Shop</li>
             <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i
                         class="nav-icon ti ti-layout-cta-right"></i><span class="nav-title">Banners
                         Management</span></a>
@@ -20,7 +28,6 @@
                             href='{{ route('banner.create') }}'>Add Banners</a> </li>
                 </ul>
             </li>
-            <li class="nav-static-title">Shop</li>
             <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i
                         class="nav-icon ti ti-gallery"></i><span class="nav-title">Brands Management</span></a>
                 <ul aria-expanded="false">
@@ -74,7 +81,7 @@
                     <span class="nav-title">Order Management</span>
                 </a>
             </li>
-            <li class="nav-static-title">Post</li>
+            {{-- <li class="nav-static-title">Post</li>
             <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i
                         class="nav-icon zmdi zmdi-folder"></i><span class="nav-title">Post Management</span></a>
                 <ul aria-expanded="false">
@@ -103,15 +110,7 @@
                     <li> <a href='calendar-full.html'>All Comments</a> </li>
                     <li> <a href='calendar-list.html'>Add Comment</a> </li>
                 </ul>
-            </li>
-            <li class="nav-static-title">Users</li>
-            <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
-                <i class="nav-icon fa fa-group"></i><span class="nav-title">User Management</span></a>
-                <ul aria-expanded="false">
-                    <li> <a href='{{ route('user.index') }}'>All Users</a> </li>
-                    <li> <a href='{{ route('user.create') }}'>Add User</a> </li>
-                </ul>
-            </li>
+            </li> --}}
             <li class="nav-static-title">General Settings</li>
             <li>
                 <a href="{{ route('settings') }}" aria-expanded="false">
@@ -120,6 +119,12 @@
                 </a>
             </li>
             <li class="nav-static-title">Others</li>
+            <li>
+                <a href="{{ route('settings.system.info') }}" aria-expanded="false">
+                    <i class="nav-icon ti ti-panel"></i>
+                    <span class="nav-title">System Information</span>
+                </a>
+            </li>
             <li>
                 <a href="{{ route('settings.optimize') }}" aria-expanded="false">
                     <i class="nav-icon ti ti-brush"></i>

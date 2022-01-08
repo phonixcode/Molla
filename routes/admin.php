@@ -29,10 +29,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin', 'preventBackHi
 
     //Band Section
     Route::resource('brand', BrandController::class);
+    Route::post('brand-status', [BrandController::class, 'brandStatus'])->name('brand.status');
 
     //Category Section
     Route::resource('category', CategoryController::class);
     Route::post('category/{id}/child', [CategoryController::class, 'getChildByParentID']);
+    Route::post('category-status', [CategoryController::class, 'categoryStatus'])->name('category.status');
 
     //Product Section
     Route::resource('product', ProductController::class);
@@ -43,9 +45,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin', 'preventBackHi
 
     //User Section
     Route::resource('user', UserController::class);
+    Route::post('user-status', [UserController::class, 'userStatus'])->name('user.status');
 
     // Coupons Section
     Route::resource('coupon', CouponController::class);
+    Route::post('coupon-status', [CouponController::class, 'couponStatus'])->name('coupon.status');
 
     // shipping Section
     Route::resource('shipping', ShippingController::class);
@@ -59,6 +63,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin', 'preventBackHi
     Route::get('settings', [SettingsController::class, 'settings'])->name('settings');
     Route::put('settings', [SettingsController::class, 'updateSettings'])->name('settings.update');
     Route::get('clear-cache', [SettingsController::class, 'optimize'])->name('settings.optimize');
+    Route::get('system-info', [SettingsController::class, 'systemInfo'])->name('settings.system.info');
 
     Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
 });

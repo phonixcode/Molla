@@ -43,7 +43,7 @@
                                         <tr>
                                             <th>S.N.</th>
                                             <th>Code</th>
-                                            <th>Type</th>
+                                            <th>Discount Type</th>
                                             <th>Value</th>
                                             <th>Status</th>
                                             <th>Actions</th>
@@ -51,45 +51,51 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($coupons as $item)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->code }}</td>
-                                            <td>
-                                                @if ($item->type == 'fixed')
-                                                    <span
-                                                        class="badge badge-success-inverse">{{ $item->type }}</span>
-                                                @else
-                                                    <span
-                                                        class="badge badge-primary-inverse">{{ $item->type }}</span>
-                                                @endif
-                                            </td>
-                                            <td>{{ $item->value }}</td>
-                                            <td>
-                                                @if ($item->status == 'active')
-                                                <span class="badge badge-success">{{ $item->status }}</span>
-                                                @else
-                                                <span class="badge badge-danger">{{ $item->status }}</span>
-                                                @endif
-                                            </td>
-                                            <td style="white-space: nowrap; width: 1%;">
-                                                <div class="dropdown">
-                                                    <button class="btn btn-warning btn-sm dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        Options
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                        <a href="{{ route('coupon.edit', $item->id) }}" class="dropdown-item"><i class="ti ti-pencil pr-2 text-primary"></i>Edit</a>
-                                                        <form action="{{ route('coupon.destroy', $item->id) }}"
-                                                            method="post">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <a class="dltBtn dropdown-item"
-                                                                href="{{ route('coupon.destroy', $item->id) }}"
-                                                                data-id="{{ $item->id }}"><i class="ti ti-trash pr-2 text-danger"></i>Delete</a>
-                                                        </form>
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->code }}</td>
+                                                <td>
+                                                    @if ($item->type == 'fixed')
+                                                        <span class="badge badge-success-inverse">{{ $item->type }}</span>
+                                                    @else
+                                                        <span class="badge badge-primary-inverse">{{ $item->type }}</span>
+                                                    @endif
+                                                </td>
+                                                <td>{{ $item->value }}</td>
+                                                <td>
+                                                    <div class="checkbox checbox-switch switch-success">
+                                                        <label>
+                                                            <input type="checkbox" name="toggle"
+                                                                {{ $item->status == 'active' ? 'checked' : '' }}
+                                                                value="{{ $item->id }}" />
+                                                            <span></span>
+                                                        </label>
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                                <td style="white-space: nowrap; width: 1%;">
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-warning btn-sm dropdown-toggle" type="button"
+                                                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            Options
+                                                        </button>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                            <a href="{{ route('coupon.edit', $item->id) }}"
+                                                                class="dropdown-item"><i
+                                                                    class="ti ti-pencil pr-2 text-primary"></i>Edit</a>
+                                                            <form action="{{ route('coupon.destroy', $item->id) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <a class="dltBtn dropdown-item"
+                                                                    href="{{ route('coupon.destroy', $item->id) }}"
+                                                                    data-id="{{ $item->id }}"><i
+                                                                        class="ti ti-trash pr-2 text-danger"></i>Delete</a>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                     <tfoot>
@@ -154,6 +160,29 @@
                         'Your imaginary file is safe :)',
                         'error'
                     )
+                }
+            })
+        });
+    </script>
+
+    <script>
+        $('input[name=toggle]').change(function() {
+            var mode = $(this).prop('checked');
+            var id = $(this).val();
+            $.ajax({
+                url: "{{ route('coupon.status') }}",
+                type: "POST",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    mode: mode,
+                    id: id,
+                },
+                success: function(response) {
+                    if (response.status) {
+                        toastr.success(response.msg);
+                    } else {
+                        toastr.error("Some went wrong!, please try again");
+                    }
                 }
             })
         });

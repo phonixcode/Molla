@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ShippingRequest;
 use App\Models\Shipping;
 use App\Services\Status;
+use Helper;
 
 class ShippingController extends Controller
 {
@@ -22,9 +23,9 @@ class ShippingController extends Controller
         return view('admin.shipping.index', compact('shippings'));
     }
 
-    public function shippingStatus(Request  $request)
+    public function shippingStatus(Request  $request, Shipping $shipping)
     {
-        Status::toggleStatus($request, 'shippings');
+        Helper::toggleStatus($request, $shipping);
         return response()->json(['msg' => 'Status updated successfully.', 'status' => true]);
     }
 
