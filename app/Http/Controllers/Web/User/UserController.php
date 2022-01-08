@@ -18,7 +18,8 @@ class UserController extends Controller
 
     public function userOder()
     {
-        $user = Auth::user();
+        $uuid = Auth::user()->uuid;
+        $user = User::where('uuid', $uuid)->with('orders')->firstOrFail();
         return view('frontend.user.order', compact('user'));
     }
 
