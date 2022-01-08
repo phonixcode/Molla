@@ -69,7 +69,7 @@ class Order extends Model
 
     public static function getLatestOrders()
     {
-        return self::latest()->limit(5)->get();
+        return self::latest()->take(6)->get();
     }
 
     public function getRouteKeyName(): string

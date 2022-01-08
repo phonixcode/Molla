@@ -82,7 +82,7 @@
                                             <div class="media">
                                                 <i class="fa fa-money text-success font-60 mr-4"></i>
                                                 <div class="media-body pb-0">
-                                                    <h4 class="mb-1">$24,500</h4>
+                                                    <h4 class="mb-1">$0.00</h4>
                                                     <p>Net Profile</p>
                                                 </div>
                                             </div>
