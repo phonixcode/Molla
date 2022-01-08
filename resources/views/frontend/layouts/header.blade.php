@@ -48,6 +48,16 @@
                         </form>
                     </div>
 
+                    <!-- Compare -->
+                    <div class="cart-area">
+                        <div class="cart--btn">
+                            <a href="{{ route('compare') }}" class="compare-btn">
+                                <i class="icofont-exchange"></i>
+                                <span class="cart_quantity" id="compare-counter">{{ Cart::instance('compare')->count() }}</span>
+                            </a>
+                        </div>
+                    </div>
+
                     <!-- Wishlist -->
                     <div class="cart-area">
                         <div class="cart--btn">

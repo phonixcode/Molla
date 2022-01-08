@@ -198,15 +198,106 @@
         })
     });
 
+    // add to compare
+    $(document).on('click', '.add_to_compare', function(e) {
+        e.preventDefault();
+        var product_id = $(this).data('id');
+
+        var token = "{{ csrf_token() }}";
+        var path = "{{ route('compare.store') }}";
+
+        $.ajax({
+            url: path,
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                product_id: product_id,
+                _token: token,
+            },
+            beforeSend: function() {
+                $('#add_to_compare_' + product_id).html('<i class="fa fa-spinner fa-spin"></i>');
+            },
+            complete: function() {
+                $('#add_to_compare_' + product_id).html(
+                    '<i class="icofont-exchange"></i>');
+            },
+            success: function(data) {
+                if (data['status']) {
+                    $('body #header-ajax').html(data['header']);
+                    $('body #compare-counter').html(data['compare_count']);
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": 300,
+                        "hideDuration": 1000,
+                        "timeOut": 5000,
+                        "extendedTimeOut": 1000,
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                    toastr.success(data['message']);
+                } else if (data['status'] == false) {
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": 300,
+                        "hideDuration": 1000,
+                        "timeOut": 5000,
+                        "extendedTimeOut": 1000,
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                    toastr.warning(data['message']);
+                } else if (data['present']) {
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": 300,
+                        "hideDuration": 1000,
+                        "timeOut": 5000,
+                        "extendedTimeOut": 1000,
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                    toastr.warning(data['message']);
+                }
+            },
+            error: function(err) {
+                toastr.error("Something went wrong!, please try again later");
+            }
+        })
+    });
+
     $('.qty-text').change('key up', function() {
         var id = $(this).data('id');
         var spinner = $(this),
             input = spinner.closest('div.quantity').find('input[type="number"]');
         var newVal = parseFloat(input.val());
-        $('#add_to_cart_button_details_'+id).attr('data-quantity', newVal);
+        $('#add_to_cart_button_details_' + id).attr('data-quantity', newVal);
     });
 
-    $('.add_to_cart_button_details').on('click', function(e){
+    $('.add_to_cart_button_details').on('click', function(e) {
         e.preventDefault();
         var product_qty = $(this).data('quantity');
         var product_id = $(this).data('product_id');
@@ -225,10 +316,11 @@
                 product_price: product_price,
             },
             beforeSend: function() {
-                $('#add_to_cart_button_details_'+ product_id).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+                $('#add_to_cart_button_details_' + product_id).html(
+                    '<i class="fa fa-spinner fa-spin"></i> Loading...');
             },
             complete: function() {
-                $('#add_to_cart_button_details_'+ product_id).html('Add To Cart');
+                $('#add_to_cart_button_details_' + product_id).html('Add To Cart');
             },
             success: function(data) {
                 $('body #header-ajax').html(data['header']);

@@ -10,6 +10,7 @@ use App\Http\Controllers\Web\CheckoutController;
 use App\Http\Controllers\Web\WishlistController;
 use App\Http\Controllers\Web\Auth\LoginController;
 use App\Http\Controllers\Web\Auth\RegisterController;
+use App\Http\Controllers\Web\CompareController;
 use App\Http\Controllers\Web\User\UserController;
 use App\Http\Controllers\Web\ProductController;
 use App\Http\Controllers\Web\ProductReviewController;
@@ -35,6 +36,7 @@ Route::get('faq', [IndexController::class, 'faq'])->name('faq');
 
 Route::get('cart', [CartController::class, 'cart'])->name('cart');
 // Route::post('/add-to-cart',[CartController::class , 'singleAddToCart'])->name('single.add.to.cart');
+
 Route::post('cart/store', [CartController::class, 'cartStore'])->name('cart.store');
 Route::post('cart/delete', [CartController::class, 'cartDelete'])->name('cart.delete');
 Route::post('cart/update', [CartController::class, 'cartUpdate'])->name('cart.update');
@@ -44,6 +46,12 @@ Route::get('wishlist', [WishlistController::class, 'wishlist'])->name('wishlist'
 Route::post('wishlist/store', [WishlistController::class, 'wishlistStore'])->name('wishlist.store');
 Route::post('wishlist/move-cart', [WishlistController::class, 'wishlistMoveToCart'])->name('wishlist.move.cart');
 Route::post('wishlist/delete', [WishlistController::class, 'wishlistDelete'])->name('wishlist.delete');
+
+Route::get('compare', [CompareController::class, 'compare'])->name('compare');
+Route::post('compare/store', [CompareController::class, 'compareStore'])->name('compare.store');
+Route::post('compare/move-cart', [CompareController::class, 'compareMoveToCart'])->name('compare.move.cart');
+Route::post('compare/move-wishlist', [CompareController::class, 'compareMoveToWishlist'])->name('compare.move.wishlist');
+Route::post('compare/delete', [CompareController::class, 'compareDelete'])->name('compare.delete');
 
 Route::get('products', [ProductController::class, 'products'])->name('products');
 Route::get('product-lists', [ProductController::class, 'productLists'])->name('product.list');

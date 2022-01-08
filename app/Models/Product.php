@@ -40,6 +40,16 @@ class Product extends Model
         return self::where('status', 'active')->get();
     }
 
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'cat_id', 'id');
+    }
+
     public function brands()
     {
         return $this->hasMany(Brand::class, 'id', 'brand_id');
