@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BannerRequest;
+use Helper;
 
 class BannerController extends Controller
 {
@@ -22,9 +23,9 @@ class BannerController extends Controller
         return view('admin.banner.index', compact('banners'));
     }
 
-    public function bannerStatus(Request $request)
+    public function bannerStatus(Request $request, Banner $banner)
     {
-        Banner::toggleStatus($request);
+        Helper::toggleStatus($request, $banner);
         return response()->json(['msg' => 'Status updated successfully.', 'status' => true]);
     }
 

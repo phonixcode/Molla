@@ -21,6 +21,21 @@ class Helper
     {
         return floor(Product::max('offer_price'));
     }
+
+    /**
+     * @param Request $request
+     * @param $table
+     */
+    public static function toggleStatus($request, $toggleStatus)
+    {
+        if (!empty($request)) {
+            if ($request->mode == 'true') {
+                $toggleStatus::where('id', $request->id)->update(['status' => 'active']);
+            }else{
+                $toggleStatus::where('id', $request->id)->update(['status' => 'inactive']);
+            }
+        }
+    }
 }
 
 // Settings SEO

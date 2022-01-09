@@ -64,4 +64,12 @@ class SettingsController extends Controller
 
         return back()->with('success', 'Cache cleared successfully');
     }
+
+    public function systemInfo(){
+        $laravelVersion = app()->version();
+        $serverDetails = $_SERVER;
+        $currentPHP = phpversion();
+        $timeZone = config('app.timezone');
+        return view('admin.system-info', compact('currentPHP', 'laravelVersion', 'serverDetails','timeZone'));
+    }
 }

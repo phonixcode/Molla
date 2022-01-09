@@ -66,8 +66,13 @@
                                                         class="badge  badge-primary-inverse">{{ $item->condition }}</span>
                                                 @endif
                                             </td>
-                                            <td style="white-space: nowrap; width: 1%;">
-                                                <input type="checkbox" name="toggle" value="{{ $item->id }}" {{ $item->status == 'active' ? 'checked' : '' }} data-toggle="toggle" data-on="Active" data-off="Inactive" data-onstyle="success" data-offstyle="danger" data-size="sm">
+                                            <td>
+                                                <div class="checkbox checbox-switch switch-success">
+                                                    <label>
+                                                        <input type="checkbox" name="toggle" {{ $item->status == 'active' ? 'checked' : '' }}  value="{{ $item->id }}"/>
+                                                        <span></span>
+                                                    </label>
+                                                </div>
                                             </td>
                                             <td style="white-space: nowrap; width: 1%;">
                                                 <div class="dropdown">

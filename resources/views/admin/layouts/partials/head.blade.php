@@ -3,6 +3,8 @@
 <meta name="description" content="{{ get_setting('meta_description') }}" />
 <meta name="author" content="Frocode Tech Solutions" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- CSRF Token -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <title>{{ get_setting('title') }}</title>
 <!-- app favicon -->

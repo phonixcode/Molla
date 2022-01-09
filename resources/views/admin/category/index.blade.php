@@ -52,38 +52,48 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($categories as $item)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->title }}</td>
-                                            <td><img src="{{ $item->photo }}" alt="{{ $item->title }}" width="50" height="50" /></td>
-                                            <td>{{ $item->is_parent === 1 ? 'Yes' : 'No' }}</td>
-                                            <td>{{ App\Models\Category::where('id', $item->parent_id)->value('title') }}</td>
-                                            <td>
-                                                @if ($item->status == 'active')
-                                                    <span class="badge badge-success">{{ $item->status }}</span>
-                                                @else
-                                                    <span class="badge badge-danger">{{ $item->status }}</span>
-                                                @endif
-                                            </td>
-                                            <td style="white-space: nowrap; width: 1%;">
-                                                <div class="dropdown">
-                                                    <button class="btn btn-warning btn-sm dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        Options
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                        <a href="{{ route('category.edit', $item->slug) }}" class="dropdown-item"><i class="ti ti-pencil pr-2 text-primary"></i>Edit</a>
-                                                        <form action="{{ route('category.destroy', $item->slug) }}"
-                                                            method="post">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <a class="dltBtn dropdown-item"
-                                                                href="{{ route('category.destroy', $item->slug) }}"
-                                                                data-id="{{ $item->slug }}"><i class="ti ti-trash pr-2 text-danger"></i>Delete</a>
-                                                        </form>
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->title }}</td>
+                                                <td><img src="{{ $item->photo }}" alt="{{ $item->title }}" width="50"
+                                                        height="50" /></td>
+                                                <td>{{ $item->is_parent === 1 ? 'Yes' : 'No' }}</td>
+                                                <td>{{ App\Models\Category::where('id', $item->parent_id)->value('title') }}
+                                                </td>
+                                                <td>
+                                                    <div class="checkbox checbox-switch switch-success">
+                                                        <label>
+                                                            <input type="checkbox" name="toggle"
+                                                                {{ $item->status == 'active' ? 'checked' : '' }}
+                                                                value="{{ $item->id }}" />
+                                                            <span></span>
+                                                        </label>
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                                <td style="white-space: nowrap; width: 1%;">
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-warning btn-sm dropdown-toggle" type="button"
+                                                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            Options
+                                                        </button>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                            <a href="{{ route('category.edit', $item->slug) }}"
+                                                                class="dropdown-item"><i
+                                                                    class="ti ti-pencil pr-2 text-primary"></i>Edit</a>
+                                                            <form action="{{ route('category.destroy', $item->slug) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <a class="dltBtn dropdown-item"
+                                                                    href="{{ route('category.destroy', $item->slug) }}"
+                                                                    data-id="{{ $item->slug }}"><i
+                                                                        class="ti ti-trash pr-2 text-danger"></i>Delete</a>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                     <tfoot>
@@ -154,12 +164,12 @@
         });
     </script>
 
-    {{-- <script>
+    <script>
         $('input[name=toggle]').change(function() {
             var mode = $(this).prop('checked');
             var id = $(this).val();
             $.ajax({
-                url: "{{ route('banner.status') }}",
+                url: "{{ route('category.status') }}",
                 type: "POST",
                 data: {
                     _token: '{{ csrf_token() }}',
@@ -168,32 +178,12 @@
                 },
                 success: function(response) {
                     if (response.status) {
-                        swal({
-                            title: 'Congratulations!',
-                            text: response.msg,
-                            icon: 'success',
-                            button: {
-                                text: "Continue",
-                                value: true,
-                                visible: true,
-                                className: "btn btn-primary"
-                            }
-                        })
+                        toastr.success(response.msg);
                     } else {
-                        swal({
-                            title: 'Error!',
-                            text: 'Please try again',
-                            icon: 'error',
-                            button: {
-                                text: "Ok",
-                                value: true,
-                                visible: true,
-                                className: "btn btn-danger"
-                            }
-                        })
+                        toastr.error("Some went wrong!, please try again");
                     }
                 }
             })
         });
-    </script> --}}
+    </script>
 @endsection

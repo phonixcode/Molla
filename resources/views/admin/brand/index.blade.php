@@ -57,11 +57,12 @@
                                             <td>{{ $item->slug }}</td>
                                             <td><img src="{{ $item->photo }}" alt="{{ $item->title }}" width="50" height="50"></td>
                                             <td>
-                                                @if ($item->status == 'active')
-                                                <span class="badge badge-success">{{ $item->status }}</span>
-                                                @else
-                                                <span class="badge badge-danger">{{ $item->status }}</span>
-                                                @endif
+                                                <div class="checkbox checbox-switch switch-success">
+                                                    <label>
+                                                        <input type="checkbox" name="toggle" {{ $item->status == 'active' ? 'checked' : '' }}  value="{{ $item->id }}"/>
+                                                        <span></span>
+                                                    </label>
+                                                </div>
                                             </td>
                                             <td style="white-space: nowrap; width: 1%;">
                                                 <div class="dropdown">
@@ -146,6 +147,29 @@
                         'Your imaginary file is safe :)',
                         'error'
                     )
+                }
+            })
+        });
+    </script>
+
+    <script>
+        $('input[name=toggle]').change(function() {
+            var mode = $(this).prop('checked');
+            var id = $(this).val();
+            $.ajax({
+                url: "{{ route('brand.status') }}",
+                type: "POST",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    mode: mode,
+                    id: id,
+                },
+                success: function(response) {
+                    if (response.status) {
+                        toastr.success(response.msg);
+                    } else {
+                        toastr.error("Some went wrong!, please try again");
+                    }
                 }
             })
         });

@@ -6,6 +6,7 @@ use App\Models\Currency;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CurrencyRequest;
+use Helper;
 
 class CurrencyController extends Controller
 {
@@ -21,14 +22,9 @@ class CurrencyController extends Controller
         ]);
     }
 
-    public function currencyStatus(Request $request)
+    public function currencyStatus(Request $request, Currency $currency)
     {
-        if ($request->mode == 'true') {
-            Currency::where('id', $request->id)->update(['status' => 'active']);
-        } else {
-            Currency::where('id', $request->id)->update(['status' => 'inactive']);
-        }
-
+        Helper::toggleStatus($request, $currency);
         return response()->json(['msg' => 'Status updated successfully.', 'status' => true]);
     }
 

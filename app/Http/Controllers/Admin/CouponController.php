@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
+use Helper;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller
@@ -17,6 +18,12 @@ class CouponController extends Controller
     {
         $coupons = Coupon::orderBy('id', 'DESC')->get();
         return view('admin.coupon.index', compact('coupons'));
+    }
+
+    public function couponStatus(Request $request, Coupon $coupon)
+    {
+        Helper::toggleStatus($request, $coupon);
+        return response()->json(['msg' => 'Status updated successfully.', 'status' => true]);
     }
 
     /**

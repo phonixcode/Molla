@@ -56,18 +56,20 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
-                                                    <img src="{{ $item->photo }}" alt="{{ $item->full_name }}" width="50"
-                                                        height="50" style="border-radius: 50%;" />
+                                                    <img src="{{ $item->photo }}" alt="{{ $item->full_name }}"
+                                                        width="50" height="50" style="border-radius: 50%;" />
                                                 </td>
                                                 <td>{{ $item->full_name }}</td>
                                                 <td>{{ $item->email }}</td>
-                                                {{-- <td>{{ $item->role }}</td> --}}
                                                 <td>
-                                                    @if ($item->status == 'active')
-                                                        <span class="badge badge-success">{{ $item->status }}</span>
-                                                    @else
-                                                        <span class="badge badge-danger">{{ $item->status }}</span>
-                                                    @endif
+                                                    <div class="checkbox checbox-switch switch-success">
+                                                        <label>
+                                                            <input type="checkbox" name="toggle"
+                                                                {{ $item->status == 'active' ? 'checked' : '' }}
+                                                                value="{{ $item->id }}" />
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
                                                 </td>
                                                 <td style="white-space: nowrap; width: 1%;">
                                                     <div class="dropdown">
@@ -169,12 +171,12 @@
 
 
 
-    {{-- <script>
+    <script>
         $('input[name=toggle]').change(function() {
             var mode = $(this).prop('checked');
             var id = $(this).val();
             $.ajax({
-                url: "{{ route('banner.status') }}",
+                url: "{{ route('user.status') }}",
                 type: "POST",
                 data: {
                     _token: '{{ csrf_token() }}',
@@ -183,32 +185,12 @@
                 },
                 success: function(response) {
                     if (response.status) {
-                        swal({
-                            title: 'Congratulations!',
-                            text: response.msg,
-                            icon: 'success',
-                            button: {
-                                text: "Continue",
-                                value: true,
-                                visible: true,
-                                className: "btn btn-primary"
-                            }
-                        })
+                        toastr.success(response.msg);
                     } else {
-                        swal({
-                            title: 'Error!',
-                            text: 'Please try again',
-                            icon: 'error',
-                            button: {
-                                text: "Ok",
-                                value: true,
-                                visible: true,
-                                className: "btn btn-danger"
-                            }
-                        })
+                        toastr.error("Some went wrong!, please try again");
                     }
                 }
             })
         });
-    </script> --}}
+    </script>
 @endsection

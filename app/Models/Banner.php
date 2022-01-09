@@ -17,21 +17,6 @@ class Banner extends Model
        return Banner::latest()->get();
     }
 
-    /**
-     * @param Request $request
-     * @param $table
-     */
-    public static function toggleStatus($request)
-    {
-        if (!empty($request)) {
-            if ($request->mode == 'true') {
-                Banner::where('id', $request->id)->update(['status' => 'active']);
-            }else{
-                Banner::where('id', $request->id)->update(['status' => 'inactive']);
-            }
-        }
-    }
-
     public function getRouteKeyName()
     {
         return 'slug';

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,6 +20,12 @@ class UserController extends Controller
     {
         $users = User::getUsers();
         return view('admin.user.index', compact('users'));
+    }
+
+    public function userStatus(Request  $request, User $user)
+    {
+        Helper::toggleStatus($request, $user);
+        return response()->json(['msg' => 'Status updated successfully.', 'status' => true]);
     }
 
     /**

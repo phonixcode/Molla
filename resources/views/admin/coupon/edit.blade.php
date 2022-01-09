@@ -59,8 +59,8 @@
                                         value="{{ $coupon->code }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Coupon Value <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="value" placeholder="Coupon value" name="value"
+                                    <label for="">Coupon Amount <span class="text-danger">*</span></label>
+                                    <input type="number" step="any" class="form-control" id="value" placeholder="Coupon value" name="value"
                                         value="{{ $coupon->value }}">
                                 </div>
                                 <div class="form-group">
