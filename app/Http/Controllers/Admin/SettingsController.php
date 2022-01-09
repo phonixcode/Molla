@@ -61,6 +61,7 @@ class SettingsController extends Controller
         Artisan::call('route:cache');
         Artisan::call('view:clear');
         Artisan::call('optimize:clear');
+
         return back()->with('success', 'Cache cleared successfully');
     }
 

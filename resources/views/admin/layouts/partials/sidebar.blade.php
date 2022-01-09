@@ -110,7 +110,7 @@
                     <li> <a href='calendar-full.html'>All Comments</a> </li>
                     <li> <a href='calendar-list.html'>Add Comment</a> </li>
                 </ul>
-            </li> --}}
+
             <li class="nav-static-title">General Settings</li>
             <li>
                 <a href="{{ route('settings') }}" aria-expanded="false">
