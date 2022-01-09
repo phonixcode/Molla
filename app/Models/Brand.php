@@ -18,6 +18,11 @@ class Brand extends Model
         return $this->hasMany(Product::class)->where('status', 'active');
     }
 
+    public static function getActiveBrands()
+    {
+        return self::where(['status' => 'active'])->orderBy('id', 'DESC')->get();
+    }
+
     // public function products(){
     //     return $this->hasMany('App\Models\Product','brand_id','id')->where('status','active');
     // }

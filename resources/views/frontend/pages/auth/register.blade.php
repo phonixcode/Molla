@@ -24,7 +24,7 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-md-6">
                     <div class="login_form mb-50">
-                        <h5 class="mb-3">Register</h5>
+                        <h5 class="mb-3" align="center">REGISTER</h5>
 
                         <form action="{{ route('register.submit') }}" method="post">
                             @csrf
@@ -68,6 +68,10 @@
                                     placeholder="Confirm Password">
                             </div>
                             <button type="submit" class="btn btn-primary btn-sm">Register</button>
+                            <div class="forget_pass mt-15" align="center">
+                                Already have an account?
+                                <a href="{{ route('user.auth.login') }}"> login</a>
+                            </div>
                         </form>
                     </div>
                 </div>

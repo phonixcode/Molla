@@ -8,7 +8,7 @@
                     $photo = explode(',', $item->model->photo);
                 @endphp
                 <td class="com-pro-img">
-                    <a href="#"><img src="{{ $photo[0] }}" alt="{{ $item->name }}"></a>
+                    <a href="#"><img src="{{ $photo[0] }}" alt="{{ $item->name }}" width="100" height="50"></a>
                 </td>
             @endforeach
         </tr>

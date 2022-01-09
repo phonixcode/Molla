@@ -14,7 +14,22 @@ class Banner extends Model
 
     public static function getBanners()
     {
-       return Banner::latest()->get();
+        return Banner::latest()->get();
+    }
+
+    public static function BannerWithPromo()
+    {
+        return self::where(['status' => 'active', 'condition' => 'promo'])
+            ->orderBy('id', 'DESC')
+            ->first();
+    }
+
+    public static function BannerWithBanners()
+    {
+        return self::where(['status' => 'active', 'condition' => 'banner'])
+            ->orderBy('id', 'DESC')
+            ->limit('5')
+            ->get();
     }
 
     public function getRouteKeyName()

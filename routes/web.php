@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Test\TestController;
+use App\Http\Controllers\Web\Auth\ForgetPassController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\CartController;
@@ -76,6 +77,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['guest:web', 'preventBackHist
     Route::post('login', [LoginController::class, 'loginSubmit'])->name('login.submit');
     Route::get('register', [RegisterController::class, 'userRegister'])->name('user.auth.register');
     Route::post('register', [RegisterController::class, 'RegisterSubmit'])->name('register.submit');
+    Route::get('forget-pass', [ForgetPassController::class, 'userForgetPass'])->name('user.auth.forget.pass');
+    Route::post('forget-pass',[ForgetPassController::class, 'forgetPassSubmit'])->name('forget.pass.submit');
 });
 
 Route::group(['prefix' => 'user', 'middleware' => ['auth:web', 'preventBackHistory']], function () {
