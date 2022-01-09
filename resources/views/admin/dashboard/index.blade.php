@@ -206,11 +206,11 @@
                                     <thead class="bg-light">
                                         <tr>
                                             <th>Order ID</th>
-                                            <th>Customer</th>
-                                            <th>Email</th>
+                                            <th>Product</th>
+                                            <th>Date</th>
                                             <th>Payment Method</th>
                                             <th>Order Status</th>
-                                            <th>Amount</th>
+                                            <th>Total</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -219,8 +219,8 @@
                                         @forelse ($orders as $item)
                                         <tr>
                                             <td>{{ $item->order_number }}</td>
-                                            <td>{{ $item->first_name . ' ' . $item->last_name }}</td>
-                                            <td>{{ $item->email }}</td>
+                                            <td>{{ count($item->products) }}</td>
+                                            <td>{{ Carbon\Carbon::parse($item->created_at)->isoFormat('MMMM Do YYYY') }}</td>
                                             <td>
                                                 {{ $item->payment_method == 'cod' ? 'Cash on Delivery' : $item->payment_method }}
                                             </td>
@@ -243,7 +243,7 @@
                                             </td>
                                             <td>
                                                 <a href="{{ route('order.show', $item->uuid) }}" class="ml-2 btn btn-icon btn-sm btn-inverse-dark">
-                                                    <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="" data-original-title="show"></i>
+                                                    <i class="fa fa-desktop" data-toggle="tooltip" data-placement="top" title="" data-original-title="show"></i>
                                                 </a>
                                             </td>
                                         </tr>

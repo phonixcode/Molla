@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class OrderMail extends Mailable implements ShouldQueue
+class ContactMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,7 +30,7 @@ class OrderMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->markdown('mail.order')
-            ->subject('New Confirm message' . $this->details['email']);
+        return $this->markdown('mail.contact')
+            ->subject($this->details['subject']);
     }
 }

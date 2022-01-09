@@ -41,11 +41,12 @@
                 </div>
                 <div class="col-12 col-lg-6">
                     <div class="about_us_content pl-0 pl-lg-5">
-                        <h5>Bigshop is elegant e-commerce HTML5 template. It's suitable for all e-commerce platform.</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione quibusdam saepe alias
+                        <h5>Molla is elegant e-commerce plateform. It's suitable for all e-commerce platform.</h5>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione quibusdam saepe alias
                             dignissimos consequatur ullam expedita voluptas commodi veritatis repellendus nostrum, tempore,
-                            ducimus architecto iure.</p>
-                        <a href="#" class="btn btn-primary mt-30">Learn More</a>
+                            ducimus architecto iure.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -109,44 +110,6 @@
         </div>
     </section>
 
-    <!-- Cool Facts Area -->
-    <section class="about_us_one cool_facts_area section_padding_100_70 bg-overlay jarallax"
-        style="background-image: url({{ asset('frontend/img/bg-img/deals.jpg') }});">
-        <div class="container">
-            <div class="row">
-                <!-- Single Cool Facts -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="cool_fact_text text-center wow fadeInUp" data-wow-delay="0.2s">
-                        <h2><span class="counter">2</span>+</h2>
-                        <h5>Years of experience</h5>
-                    </div>
-                </div>
-                <!-- Single Cool Facts -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="cool_fact_text text-center wow fadeInUp" data-wow-delay="0.4s">
-                        <h2><span class="counter">3350</span>+</h2>
-                        <h5>Happy Customer</h5>
-                    </div>
-                </div>
-                <!-- Single Cool Facts -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="cool_fact_text text-center wow fadeInUp" data-wow-delay="0.6s">
-                        <h2><span class="counter">7815</span>+</h2>
-                        <h5>Team Advisor</h5>
-                    </div>
-                </div>
-                <!-- Single Cool Facts -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="cool_fact_text text-center wow fadeInUp" data-wow-delay="0.8s">
-                        <h2><span class="counter">70</span>%</h2>
-                        <h5>Return Customer</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Cool Facts Area End -->
-
     <!-- Testimonial Area -->
     <section class="testimonials_area bg-gray section_padding_100">
         <div class="container">
@@ -154,8 +117,10 @@
                 <div class="col-12 col-lg-6">
                     <div class="popular_section_heading mb-50 text-center">
                         <h5 class="mb-3">Few Words from Clients</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur saepe labore adipisci
-                            assumenda molestiae, omnis, quod ipsa facere praesentium.</p>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur saepe labore adipisci
+                            assumenda molestiae, omnis, quod ipsa facere praesentium.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -164,24 +129,21 @@
                     <div class="testimonials_slides owl-carousel">
                         <div class="single_tes_slide text-center">
                             <img src="{{ asset('frontend/img/partner-img/tes-1.png') }}" alt="">
-                            <h6>Bigshop is smart &amp; elegant e-commerce HTML5 Template. <br> It's suitable for all
-                                e-commerce business platform.</h6>
+                            <h6>Molla is smart &amp; elegant e-commerce platform.</h6>
                             <p>Emm Sarah</p>
                             <span>Support Manager</span>
                         </div>
 
                         <div class="single_tes_slide text-center">
                             <img src="{{ asset('frontend/img/partner-img/tes-2.png') }}" alt="">
-                            <h6>Bigshop is smart &amp; elegant e-commerce HTML5 Template. <br> It's suitable for all
-                                e-commerce business platform.</h6>
+                            <h6>Molla is smart &amp; elegant e-commerce platform.</h6>
                             <p>Nazrul Islam</p>
                             <span>Support Manager</span>
                         </div>
 
                         <div class="single_tes_slide text-center">
                             <img src="{{ asset('frontend/img/partner-img/tes-3.png') }}" alt="">
-                            <h6>Bigshop is smart &amp; elegant e-commerce HTML5 Template. <br> It's suitable for all
-                                e-commerce business platform.</h6>
+                            <h6>Molla is smart &amp; elegant e-commerce platform.</h6>
                             <p>Justin Align</p>
                             <span>Support Manager</span>
                         </div>
@@ -193,38 +155,27 @@
     <!-- Testimonial Area End -->
 
     <!-- Popular Brands Area -->
+    @if (count($brands) > 0)
     <section class="popular_brands_area section_padding_100">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="popular_section_heading mb-50 text-center">
+                    <div class="popular_section_heading mb-50">
                         <h5>Popular Brands</h5>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="popular_brands_slide owl-carousel">
-                        <div class="single_brands">
-                            <img src="{{ ('frontend/img/partner-img/1.jpg') }}" alt="">
-                        </div>
-                        <div class="single_brands">
-                            <img src="{{ ('frontend/img/partner-img/2.jpg') }}" alt="">
-                        </div>
-                        <div class="single_brands">
-                            <img src="{{ ('frontend/img/partner-img/3.jpg') }}" alt="">
-                        </div>
-                        <div class="single_brands">
-                            <img src="{{ ('frontend/img/partner-img/4.jpg') }}" alt="">
-                        </div>
-                        <div class="single_brands">
-                            <img src="{{ ('frontend/img/partner-img/5.jpg') }}" alt="">
-                        </div>
-                        <div class="single_brands">
-                            <img src="{{ ('frontend/img/partner-img/6.jpg') }}" alt="">
-                        </div>
+                        @foreach ($brands as $item)
+                            <div class="single_brands">
+                                <img src="{{ $item->photo }}" alt="{{ $item->title }}">
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    @endif
     <!-- Popular Brands Area End -->
 @endsection

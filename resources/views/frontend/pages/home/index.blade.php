@@ -27,6 +27,7 @@
     <!-- Welcome Slides Area -->
 
     <!-- Top Catagory Area -->
+    @if (count($categories) > 0)
     <section class="catagories_area home-3 section_padding_100_70">
         <div class="container">
             <div class="row justify-content-center">
@@ -49,8 +50,10 @@
             </div>
         </div>
     </section>
+    @endif
     <!-- Top Catagory Area -->
 
+    @if (count($new_products) > 0)
     <section class="best-selling-products-area">
         <div class="container">
             <div class="row">
@@ -149,6 +152,7 @@
             </div>
         </div>
     </section>
+    @endif
 
     <!-- Featured Products Area -->
     <section class="featured_product_area section_padding_100">
@@ -174,6 +178,7 @@
                     </div>
 
                     <!-- Featured Product Slides -->
+                    @if (count($featured_products) > 0)
                     <div class="featured_product_slides owl-carousel">
                         <!-- Single Product -->
                         @foreach ($featured_products as $item)
@@ -255,12 +260,14 @@
                             </div>
                         @endforeach
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
     </section>
     <!-- Featured Products Area -->
 
+    @if (count($top_products) > 0)
     <section class="best-selling-products-area">
         <div class="container">
             <div class="row">
@@ -283,7 +290,9 @@
             </div>
         </div>
     </section>
+    @endif
 
+    @if (count($best_rated_products) > 0)
     <section class="best-selling-products-area">
         <div class="container">
             <div class="row">
@@ -306,8 +315,10 @@
             </div>
         </div>
     </section>
+    @endif
 
     <!-- Popular Brands Area -->
+    @if (count($brands) > 0)
     <section class="popular_brands_area section_padding_100">
         <div class="container">
             <div class="row">
@@ -328,6 +339,7 @@
             </div>
         </div>
     </section>
+    @endif
     <!-- Popular Brands Area -->
 
     <!-- Special Featured Area -->

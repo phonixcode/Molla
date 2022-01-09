@@ -6,9 +6,14 @@ use App\Models\Brand;
 use App\Models\Banner;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Settings;
+use App\Mail\ContactMail;
 use App\Models\ProductOrder;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ContactRequest;
+use Illuminate\Support\Facades\Mail;
 
 class IndexController extends Controller
 {
@@ -28,12 +33,24 @@ class IndexController extends Controller
 
     public function about()
     {
-        return view('frontend.pages.about.about');
+        return view('frontend.pages.about.about', [
+            'brands' => Brand::getActiveBrands(),
+        ]);
     }
 
     public function contact()
     {
-        return view('frontend.pages.contact.contact');
+        return view('frontend.pages.contact.contact', [
+            'setting' => Settings::first()
+        ]);
+    }
+
+    public function contactSubmit(ContactRequest $request)
+    {
+        $status = Mail::to('abbyfuncode@gmail.com')->queue(new ContactMail($request->all()));
+        return (!$status)
+        ? back()->with('success', 'Enquiry sent successfully')
+        : back()->with('error', 'Something went wrong!, please try again later');
     }
 
     public function faq()

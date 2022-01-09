@@ -34,61 +34,83 @@
                 <div class="col-12 col-lg-4">
                     <div class="single-contact-info mb-30">
                         <i class="icofont-phone"></i>
-                        <p>+00 88 1125263 <br> +00 88 1125264</p>
+                        <p>{{ $setting->phone }}</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-4">
                     <div class="single-contact-info mb-30">
                         <i class="icofont-ui-email"></i>
-                        <p>support@example.com <br> help@example.com</p>
+                        <p>{{ $setting->email }}</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-4">
                     <div class="single-contact-info mb-30">
                         <i class="icofont-fax"></i>
-                        <p>+00 88 96874 <br> +00 88 96875</p>
+                        <p>{{ $setting->fax }}</p>
                     </div>
                 </div>
 
                 <div class="col-12">
                     <div class="contact_from mb-50">
-                        <form action="" method="post" id="main_contact_form">
+                        <form action="{{ route('contact.submit') }}" method="post" id="main_contact_form">
+                            @csrf
                             <div class="contact_input_area">
                                 <div id="success_fail_info"></div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <input type="text" class="form-control" name="f_name" id="f-name"
-                                                placeholder="First Name" required>
+                                                placeholder="First Name" value="{{ old('f_name') }}" required>
                                         </div>
+                                        @error('f_name')
+                                            <p class="text-danger" style="font-size: 12px;">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <input type="text" class="form-control" name="l_name" id="l-name"
-                                                placeholder="Last Name" required>
+                                                placeholder="Last Name" value="{{ old('l_name') }}" required>
                                         </div>
+                                        @error('l_name')
+                                            <p class="text-danger" style="font-size: 12px;">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <input type="email" class="form-control" name="email" id="email"
-                                                placeholder="Your E-mail" required>
+                                                placeholder="Your E-mail" value="{{ old('email') }}" required>
                                         </div>
+                                        @error('email')
+                                            <p class="text-danger" style="font-size: 12px;">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <select class="custom-select form-control w-100">
-                                                <option selected>Subject</option>
-                                                <option value="1">Delivery Info</option>
-                                                <option value="2">Payment Process</option>
-                                                <option value="3">Quality Issues</option>
-                                            </select>
+                                            <input type="text" class="form-control" name="subject" id="subject"
+                                                placeholder="Your Subject" value="{{ old('subject') }}" required>
                                         </div>
+                                        @error('subject')
+                                            <p class="text-danger" style="font-size: 12px;">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
                                             <textarea name="message" class="form-control" id="message" cols="30" rows="10"
-                                                placeholder="Your Message *" required></textarea>
+                                                placeholder="Your Message *" required>{{ old('message') }}</textarea>
                                         </div>
+                                        @error('message')
+                                            <p class="text-danger" style="font-size: 12px;">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                     <div class="col-12 text-center">
                                         <button type="submit" class="btn btn-primary w-100">Send Message</button>
