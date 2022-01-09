@@ -34,13 +34,13 @@
                     <div class="card card-statistics">
                         <div class="card-body">
                             <div class="datatable-wrapper table-responsive">
-                                <table id="datatable" class="display compact table table-striped table-bordered">
+                                <table id="datatable" class="display compact table table-bordered">
                                     <thead>
                                         <tr>
                                             <th>S.N.</th>
                                             <th>Order ID</th>
-                                            <th>Customer</th>
-                                            <th>Email</th>
+                                            <th>Product</th>
+                                            <th>Date</th>
                                             <th>Payment Method</th>
                                             <th>Order Status</th>
                                             <th>Total</th>
@@ -53,8 +53,8 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->order_number }}</td>
-                                            <td>{{ $item->first_name . ' ' . $item->last_name }}</td>
-                                            <td>{{ $item->email }}</td>
+                                            <td>{{ count($item->products) }}</td>
+                                            <td>{{ Carbon\Carbon::parse($item->created_at)->isoFormat('MMMM Do YYYY') }}</td>
                                             <td>
                                                 {{ $item->payment_method == 'cod' ? 'Cash on Delivery' : $item->payment_method }}
                                             </td>
@@ -77,7 +77,7 @@
                                             </td>
                                             <td style="white-space: nowrap; width: 1%;">
                                                 <a href="{{ route('order.show', $item->uuid) }}" class="ml-3 btn btn-icon btn-sm btn-inverse-dark">
-                                                    <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="" data-original-title="Details"></i>
+                                                    <i class="fa fa-desktop" data-toggle="tooltip" data-placement="top" title="" data-original-title="Details"></i>
                                                 </a>
                                             </td>
                                         </tr>

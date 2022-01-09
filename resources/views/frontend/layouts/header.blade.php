@@ -27,7 +27,7 @@
                         <ul>
                             <li><a href="{{ route('home') }}">Home</a></li>
                             <li><a href="{{ route('products') }}">Products</a></li>
-                            <li><a href="javascript:void(0);">Blog</a></li>
+                            {{-- <li><a href="javascript:void(0);">Blog</a></li> --}}
                             <li><a href="{{ route('about') }}">About Us</a></li>
                             <li><a href="{{ route('contact') }}">Contact</a></li>
                         </ul>
@@ -46,6 +46,16 @@
                                 <input type="submit" class="d-none" value="Send">
                             </div>
                         </form>
+                    </div>
+
+                    <!-- Compare -->
+                    <div class="cart-area">
+                        <div class="cart--btn">
+                            <a href="{{ route('compare') }}" class="compare-btn">
+                                <i class="icofont-exchange"></i>
+                                <span class="cart_quantity" id="compare-counter">{{ Cart::instance('compare')->count() }}</span>
+                            </a>
+                        </div>
                     </div>
 
                     <!-- Wishlist -->

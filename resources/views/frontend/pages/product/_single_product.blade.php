@@ -21,7 +21,9 @@
 
         <!-- Compare -->
         <div class="product_compare">
-            <a href="compare.html"><i class="icofont-exchange"></i></a>
+            <a href="javascript:void(0);" class="add_to_compare" data-id="{{ $item->id }}" id="add_to_compare_{{ $item->id }}">
+                <i class="icofont-exchange"></i>
+            </a>
         </div>
     </div>
 
@@ -119,7 +121,9 @@
                                         </div>
                                         <!-- Compare -->
                                         <div class="modal_pro_compare">
-                                            <a href="javascript:void(0);"><i class="icofont-exchange"></i></a>
+                                            <a href="javascript:void(0);" class="add_to_compare" data-id="{{ $item->id }}" id="add_to_compare_{{ $item->id }}">
+                                                <i class="icofont-exchange"></i>
+                                            </a>
                                         </div>
                                     </form>
                                     <!-- Share -->

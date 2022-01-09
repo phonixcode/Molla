@@ -17,6 +17,14 @@ class Category extends Model
         return self::where('status', 'active')->get();
     }
 
+    public static function featuredCategory()
+    {
+        return self::where(['status' => 'active', 'is_parent' => 1])
+            ->orderBy('id', 'DESC')
+            ->limit('3')
+            ->get();
+    }
+
     public static function shiftChild($cat_id)
     {
         return self::whereIn('id', $cat_id)->update(['is_parent' => 1]);
