@@ -33,6 +33,7 @@ require __DIR__ . './admin.php';
 Route::get('/', [IndexController::class, 'home'])->name('home');
 Route::get('about-us', [IndexController::class, 'about'])->name('about');
 Route::get('contact-us', [IndexController::class, 'contact'])->name('contact');
+Route::post('contact-us', [IndexController::class, 'contactSubmit'])->name('contact.submit');
 Route::get('faq', [IndexController::class, 'faq'])->name('faq');
 
 Route::get('cart', [CartController::class, 'cart'])->name('cart');

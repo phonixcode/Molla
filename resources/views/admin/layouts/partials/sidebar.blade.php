@@ -81,7 +81,7 @@
                     <span class="nav-title">Order Management</span>
                 </a>
             </li>
-            <li class="nav-static-title">Post</li>
+            {{-- <li class="nav-static-title">Post</li>
             <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i
                         class="nav-icon zmdi zmdi-folder"></i><span class="nav-title">Post Management</span></a>
                 <ul aria-expanded="false">
@@ -110,6 +110,7 @@
                     <li> <a href='calendar-full.html'>All Comments</a> </li>
                     <li> <a href='calendar-list.html'>Add Comment</a> </li>
                 </ul>
+            </li> --}}
 
             <li class="nav-static-title">General Settings</li>
             <li>
