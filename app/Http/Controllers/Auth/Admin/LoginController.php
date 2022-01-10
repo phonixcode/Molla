@@ -20,7 +20,9 @@ class LoginController extends Controller
             'password' => 'required|min:4',
         ]);
 
-        if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])){
+        $remember_me = $request->has('remember') ? true : false;
+
+        if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $remember_me)){
             return redirect()->intended(route('admin'))->with('success', 'Login Successfully');
         }
 

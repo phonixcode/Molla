@@ -77,7 +77,7 @@
                                         </tr>
                                         @empty
                                         <tr>
-                                            <td colspan="5">You have not order any product!</td>
+                                            <td colspan="7">You have not order any product!</td>
                                         </tr>
                                         @endforelse
                                     </tbody>

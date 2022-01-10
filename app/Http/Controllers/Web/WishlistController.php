@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class WishlistController extends Controller
@@ -39,6 +40,10 @@ class WishlistController extends Controller
             }
         }
 
+        if(Auth::check()){
+            Cart::instance('wishlist')->store(Auth::user()->email);
+        }
+
         return json_encode($response);
     }
 
@@ -71,6 +76,10 @@ class WishlistController extends Controller
 
         $response['status'] = true;
         $response['message'] = "Item successfully removed from wishlist";
+
+        if(Auth::check()){
+            Cart::instance('wishlist')->store(Auth::user()->email);
+        }
 
         if($request->ajax()){
             $wishlist = view('frontend.pages.wishlist._wishlist_lists')->render();

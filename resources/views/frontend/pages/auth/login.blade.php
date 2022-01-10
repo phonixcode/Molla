@@ -46,13 +46,13 @@
                                     </p>
                                 @enderror
                             </div>
-                            {{-- <div class="form-check">
+                            <div class="form-check">
                                 <div class="custom-control custom-checkbox mb-3 pl-1">
-                                    <input type="checkbox" class="custom-control-input" name="remember" id="remember"
+                                    <input type="checkbox" class="custom-control-input" name="remember" id="customChe"
                                         {{ old('remember') ? 'checked' : '' }}>
                                     <label class="custom-control-label" for="customChe">Remember me</label>
                                 </div>
-                            </div> --}}
+                            </div>
                             <button type="submit" class="btn btn-primary btn-sm">Login</button>
                         </form>
                         <!-- Forget Password -->
