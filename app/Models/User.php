@@ -36,6 +36,7 @@ class User extends Authenticatable
         's_postcode',
         's_state',
         's_address',
+        'email_verified'
     ];
 
     /**
