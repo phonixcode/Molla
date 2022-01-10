@@ -64,6 +64,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin', 'preventBackHi
     Route::put('settings', [SettingsController::class, 'updateSettings'])->name('settings.update');
     Route::get('clear-cache', [SettingsController::class, 'optimize'])->name('settings.optimize');
     Route::get('system-info', [SettingsController::class, 'systemInfo'])->name('settings.system.info');
+    Route::put('mail-config', [SettingsController::class, 'mailConfig'])->name('settings.mail.config');
+    Route::put('db-config', [SettingsController::class, 'databaseConfig'])->name('settings.db.config');
 
     Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
 });
