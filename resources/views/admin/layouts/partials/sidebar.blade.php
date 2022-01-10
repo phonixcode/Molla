@@ -51,14 +51,6 @@
                 </ul>
             </li>
             <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i
-                        class="nav-icon ti ti-shopping-cart-full"></i><span class="nav-title">Carts
-                        Management</span></a>
-                <ul aria-expanded="false">
-                    <li> <a href='calendar-full.html'>All Carts</a> </li>
-                    <li> <a href='calendar-list.html'>Add Carts</a> </li>
-                </ul>
-            </li>
-            <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i
                         class="nav-icon ion ion-ios-checkmark-circle"></i><span class="nav-title">Coupon
                         Management</span></a>
                 <ul aria-expanded="false">
@@ -74,13 +66,13 @@
                     <li> <a href='{{ route('shipping.create') }}'>Add Shipping</a> </li>
                 </ul>
             </li>
-            {{--  --}}
             <li>
                 <a href="{{ route('order.index') }}" aria-expanded="false">
                     <i class="nav-icon ti ti-layers-alt"></i>
                     <span class="nav-title">Order Management</span>
                 </a>
             </li>
+            
             {{-- <li class="nav-static-title">Post</li>
             <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i
                         class="nav-icon zmdi zmdi-folder"></i><span class="nav-title">Post Management</span></a>

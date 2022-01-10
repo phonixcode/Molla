@@ -6,6 +6,7 @@ use App\Models\Coupon;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
@@ -33,6 +34,10 @@ class CartController extends Controller
             $response['message'] = "Item was added to cart";
         }
 
+        if(Auth::check()){
+            Cart::instance('shopping')->store(Auth::user()->email);
+        }
+
         if ($request->ajax()) {
             $headers = view('frontend.layouts.header')->render();
             $response['header'] = $headers;
@@ -48,6 +53,10 @@ class CartController extends Controller
         $response['total'] = Cart::subtotal();
         $response['cart_count'] = Cart::instance('shopping')->count();
         $response['message'] = "Item removed successfully";
+
+        if(Auth::check()){
+            Cart::instance('shopping')->store(Auth::user()->email);
+        }
 
         if ($request->ajax()) {
             $headers = view('frontend.layouts.header')->render();

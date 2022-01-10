@@ -24,7 +24,9 @@ class LoginController extends Controller
             'password' => 'required|min:4',
         ]);
 
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 'active'])){
+        $remember_me = $request->has('remember') ? true : false;
+
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 'active'], $remember_me)){
             Session::put('user', $request->email);
 
             if(Session::get('url.intended')){
@@ -39,7 +41,7 @@ class LoginController extends Controller
 
     public function userLogout()
     {
-        Session::forget('user');
+        Session::flush('user');
         Auth::logout();
         return redirect()->home()->with('success', 'Successfully logout');
     }

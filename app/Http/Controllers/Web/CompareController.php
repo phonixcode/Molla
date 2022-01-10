@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CompareController extends Controller
@@ -42,6 +43,10 @@ class CompareController extends Controller
                 $response['message'] = "Item has been saved in compare list";
                 $response['compare_count'] = Cart::instance('compare')->count();
             }
+        }
+
+        if(Auth::check()){
+            Cart::instance('compare')->store(Auth::user()->email);
         }
 
         return json_encode($response);
@@ -100,6 +105,10 @@ class CompareController extends Controller
 
         $response['status'] = true;
         $response['message'] = "Item successfully removed from wishlist";
+
+        if(Auth::check()){
+            Cart::instance('compare')->store(Auth::user()->email);
+        }
 
         if ($request->ajax()) {
             $compare = view('frontend.pages.compare._compare_lists')->render();

@@ -13,21 +13,29 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class IndexController extends Controller
 {
     public function home()
     {
+        if (Auth::check()) {
+            Cart::instance('shopping')->restore(Auth::user()->email);
+            Cart::instance('wishlist')->restore(Auth::user()->email);
+            Cart::instance('compare')->restore(Auth::user()->email);
+        }
+
         return view('frontend.pages.home.index', [
-            'banners'           => Banner::BannerWithBanners(),
-            'promo_banner'      => Banner::BannerWithPromo(),
-            'categories'        => Category::featuredCategory(),
-            'brands'            => Brand::getActiveBrands(),
-            'new_products'      => Product::newProducts(),
-            'featured_products' => Product::featuredProducts(),
-            'top_products'      => Product::getTopProducts(),
-            'best_rated_products'        => Product::getBestRatedProducts(),
+            'banners'               => Banner::BannerWithBanners(),
+            'promo_banner'          => Banner::BannerWithPromo(),
+            'categories'            => Category::featuredCategory(),
+            'brands'                => Brand::getActiveBrands(),
+            'new_products'          => Product::newProducts(),
+            'featured_products'     => Product::featuredProducts(),
+            'top_products'          => Product::getTopProducts(),
+            'best_rated_products'   => Product::getBestRatedProducts(),
         ]);
     }
 
@@ -49,8 +57,8 @@ class IndexController extends Controller
     {
         $status = Mail::to('abbyfuncode@gmail.com')->queue(new ContactMail($request->all()));
         return (!$status)
-        ? back()->with('success', 'Enquiry sent successfully')
-        : back()->with('error', 'Something went wrong!, please try again later');
+            ? back()->with('success', 'Enquiry sent successfully')
+            : back()->with('error', 'Something went wrong!, please try again later');
     }
 
     public function faq()
