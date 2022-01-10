@@ -78,11 +78,14 @@ Route::group(['prefix' => 'user', 'middleware' => ['guest:web', 'preventBackHist
     Route::post('login', [LoginController::class, 'loginSubmit'])->name('login.submit');
     Route::get('register', [RegisterController::class, 'userRegister'])->name('user.auth.register');
     Route::post('register', [RegisterController::class, 'RegisterSubmit'])->name('register.submit');
+    Route::get('/verify',[RegisterController::class,'verify'])->name('user.auth.verify');
     Route::get('forget-pass', [ForgetPassController::class, 'userForgetPass'])->name('user.auth.forget.pass');
     Route::post('forget-pass',[ForgetPassController::class, 'forgetPassSubmit'])->name('forget.pass.submit');
+    Route::get('password/reset/{token}',[ForgetPassController::class,'showResetForm'])->name('reset.password.form');
+    Route::post('password/reset',[ForgetPassController::class,'resetPassword'])->name('reset.password');
 });
 
-Route::group(['prefix' => 'user', 'middleware' => ['auth:web', 'preventBackHistory']], function () {
+Route::group(['prefix' => 'user', 'middleware' => ['auth:web', 'is_user_verify_email' ,'preventBackHistory']], function () {
     Route::get('dashboard', [UserController::class, 'userDashboard'])->name('user.dashboard');
     Route::get('orders', [UserController::class, 'userOder'])->name('user.order');
     Route::get('addresses', [UserController::class, 'userAddress'])->name('user.address');

@@ -25,19 +25,21 @@
                 <div class="col-12 col-md-6">
                     <div class="login_form mb-50">
                         <h5 class="mb-3" align="center">Forget Password</h5>
-
+                        <p>
+                            Enter your email address and we will send you a link to reset your password.
+                        </p>
                         <form action="{{ route('forget.pass.submit') }}" method="post">
                             @csrf
                             <div class="form-group">
                                 <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                                    id="email" placeholder="Email" value="{{ old('email') }}">
+                                    id="email" placeholder="Enter email address" value="{{ old('email') }}">
                                 @error('email')
                                     <p class="text-danger" style="font-size: 12px;">
                                         {{ $message }}
                                     </p>
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Send Reset Password Link</button>
                         </form>
                     </div>
                 </div>
