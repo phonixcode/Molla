@@ -70,7 +70,7 @@
                                                     {{ ucfirst($item->condition) }}
                                                 </p>
                                             </td>
-                                            <td>${{ $item->total_amount }}</td>
+                                            <td>${{ number_format($item->total_amount, 2) }}</td>
                                             <td>
                                                 <a href="javascript:void(0)" class="m-2" data-toggle="modal" data-target="#orderInfo{{ $item->id }}"><i class="fa fa-desktop"></i></a>
                                             </td>

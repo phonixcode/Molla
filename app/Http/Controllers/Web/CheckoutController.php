@@ -117,7 +117,7 @@ class CheckoutController extends Controller
         }
 
         if ($status) {
-            //$order->sendNotificationMail();
+            $order->sendNotificationMail();
             Cart::instance('shopping')->destroy();
             Session::forget('coupon');
             Session::forget('checkout');
