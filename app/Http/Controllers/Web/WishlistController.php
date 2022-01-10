@@ -59,6 +59,10 @@ class WishlistController extends Controller
             $response['cart_count'] = Cart::instance('shopping')->count();
         }
 
+        if(Auth::check()){
+            Cart::instance('wishlist')->store(Auth::user()->email);
+        }
+
         if($request->ajax()){
             $wishlist = view('frontend.pages.wishlist._wishlist_lists')->render();
             $header = view('frontend.layouts.header')->render();

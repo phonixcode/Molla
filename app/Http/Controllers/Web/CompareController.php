@@ -71,6 +71,10 @@ class CompareController extends Controller
             $response['header'] = $header;
         }
 
+        if(Auth::check()){
+            Cart::instance('compare')->store(Auth::user()->email);
+        }
+
         return $response;
     }
 
@@ -84,6 +88,10 @@ class CompareController extends Controller
             $response['status'] = true;
             $response['message'] = "Item has been moved to wishlist";
             //$response['wishlist_counter'] = Cart::instance('wishlist')->count();
+        }
+
+        if(Auth::check()){
+            Cart::instance('compare')->store(Auth::user()->email);
         }
 
         if ($request->ajax()) {
